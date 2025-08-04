@@ -1,0 +1,22 @@
+name: Build LoadDll
+
+on: [push, workflow_dispatch]
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup MSBuild
+        uses: microsoft/setup-msbuild@v1.1
+
+      - name: Build solution
+        run: msbuild LoadDll.sln /p:Configuration=Release
+
+      - name: Upload binaries
+        uses: actions/upload-artifact@v4
+        with:
+          name: LoadDll-Binaries
+          path: '**/*.exe'
