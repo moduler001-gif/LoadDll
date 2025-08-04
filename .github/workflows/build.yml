@@ -13,10 +13,10 @@ jobs:
         uses: microsoft/setup-msbuild@v1.1
 
       - name: Build solution
-        run: msbuild src/LoadDll.sln /p:Configuration=Release
+        run: msbuild src/LoadDll.sln /p:Configuration=Release /p:Platform=x86
 
       - name: Upload binaries
         uses: actions/upload-artifact@v4
         with:
-          name: LoadDll-Binaries
+          name: LoadDll-Binariesx32
           path: '**/*.exe'
